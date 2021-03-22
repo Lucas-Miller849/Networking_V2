@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/PlayerKB.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Test_Level.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Fonts/Chinese_Rocks.tres" type="DynamicFont" id=3]
+
+[sub_resource type="CubeMesh" id=1]
+
+[node name="Test" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+transform = Transform( 10, 0, 0, 0, 0.5, 0, 0, 0, 10, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="PlayerKB" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.97186, 0 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( -0.999701, -9.31044e-10, -0.0244493, -0.00864859, 0.935345, 0.35363, 0.0228685, 0.353736, -0.935066, -0.140298, 7.65324, -8.35546 )
+current = true
+fov = 50.5
+
+[node name="SpawnOne" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3.45212, 5.49923, -5.10957 )
+
+[node name="SpawnTwo" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.12942, 5.53, 0 )
+
+[node name="LobbyUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnHost" type="Button" parent="LobbyUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -78.7642
+margin_top = 22.9458
+margin_right = 81.2358
+margin_bottom = 117.946
+custom_fonts/font = ExtResource( 3 )
+text = "Host"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BtnJoin" type="Button" parent="LobbyUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -77.5283
+margin_top = 130.468
+margin_right = 82.4717
+margin_bottom = 225.468
+custom_fonts/font = ExtResource( 3 )
+text = "Join"
+
+[node name="LineEdit" type="LineEdit" parent="LobbyUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -82.0
+margin_right = 164.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 3 )
+align = 1
+placeholder_text = "Enter IP"
+caret_blink = true
+
+[node name="Label" type="Label" parent="LobbyUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -123.0
+margin_top = -200.0
+margin_right = 123.0
+margin_bottom = -133.0
+custom_fonts/font = ExtResource( 3 )
+text = "Multiplayer"
+align = 1
+valign = 1
+[connection signal="button_down" from="LobbyUI/BtnHost" to="." method="_on_BtnHost_button_down"]
+[connection signal="button_down" from="LobbyUI/BtnJoin" to="." method="_on_BtnJoin_button_down"]
